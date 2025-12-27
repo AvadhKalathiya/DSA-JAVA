@@ -1,0 +1,71 @@
+
+9️⃣ Palindrome Number (LeetCode 9)
+
+🔹 Problem Statement (Simplified)
+Given an integer x, return true if it is a palindrome, otherwise false.
+A palindrome number reads the same backward and forward.
+Negative numbers are not palindromes.
+
+🔹 Example
+
+Input: 121
+Output: true
+Input: -121
+Output: false
+Input: 10
+Output: false
+
+🔹 Interview-Preferred Approach: Reverse Half / Full Number (Math, No String)
+Why Math approach?
+- No string conversion
+- Uses O(1) extra memory
+- Faster and clean logic
+
+🔹 Algorithm (Full Reverse using digit operations)
+1.If x < 0 → return false
+2.Store original number
+3Reverse number using:
+ -x % 10 → last digit
+ -rev = rev * 10 + digit
+ -x /= 10 → remove last digit
+4Compare rev == original
+
+
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        if (x < 0) return false;
+
+        int original = x;
+        int rev = 0;
+
+        while (x != 0) {
+            int digit = x % 10;
+            rev = rev * 10 + digit;
+            x /= 10;
+        }
+
+        return rev == original;
+    }
+}
+
+🔹 Time & Space Complexity
+
+Time: O(d) → d = number of digits
+
+Space: O(1) auxiliary
+
+🔥 Interview Tip
+If interviewer asks:
+
+Why not convert to string?
+
+Answer:
+
+String uses extra space. Math reverse works in O(1) memory, so it's better.
+
+📌 Quick Revision Table
+
+Approach	Time	Space
+Convert to string + reverse	O(d)	O(d)
+Optimized (Math reverse)	O(d)	O(1)
