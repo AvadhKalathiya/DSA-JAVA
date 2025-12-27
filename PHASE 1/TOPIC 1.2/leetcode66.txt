@@ -1,0 +1,56 @@
+✅ LeetCode — Plus One (LC 66)
+
+🔹 Problem Statement (Simplified)
+Given a large integer stored in an array digits, add 1 to it and return the result as an array.
+
+🔹 Example
+
+Input:  [1,2,3]
+Output: [1,2,4]
+
+Input:  [9,9,9]
+Output: [1,0,0,0]
+
+
+🔹 Interview-Preferred Approach: Modify from Right
+Why this?
+- No integer conversion
+- Handles carry cleanly
+- Optimal for large numbers
+
+🔹 Algorithm
+
+1.Start from last index
+2.Add 1 → if < 10, return array
+3.If == 10, set 0 and continue carry
+4.If loop ends, create new array with 1 at start
+
+class Solution {
+    public int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            digits[i]++;
+            if (digits[i] < 10)
+                return digits;
+            digits[i] = 0;
+        }
+        int[] res = new int[digits.length + 1];
+        res[0] = 1;
+        return res;
+    }
+}
+
+
+🔹 Time & Space Complexity
+Time: O(n) worst case
+Space: O(1) auxiliary (new array only if carry overflow)
+
+🔥 Interview Tip
+If asked:
+Why not convert array to a number and add 1?
+Answer:
+It may overflow. Array-based addition works for any size.
+
+📌 Quick Revision Table
+Approach	Time	Space
+Convert to number	❌ Risky (overflow)	O(1)
+Optimized (array + carry)	O(n)	O(1) auxiliary
