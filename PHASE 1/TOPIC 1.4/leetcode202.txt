@@ -1,0 +1,70 @@
+✅ LeetCode — Happy Number (LC 202)
+
+🔹 Problem Statement (Simplified)
+A number n is happy if:
+- Replace the number by the sum of the squares of its digits
+- Repeat the process
+- If it becomes 1 → happy number
+- If it loops endlessly (cycle) → not happy
+
+🔹 Example
+Input: 19
+Output: true  (1²+9² = 82 → 8²+2² = 68 → 6²+8² = 100 → 1)
+
+Input: 2
+Output: false (falls into a cycle)
+
+
+🔹 Interview-Preferred Approach: HashSet Cycle Detection
+Why this?
+Detects infinite loops
+O(1) average insert & lookup
+Clean logic
+
+🔹 Algorithm
+1.Create a HashSet
+2.Loop until n == 1
+3.If n already in set → return false (cycle)
+4.Insert n into set
+5.Compute next value using digit square sum
+6.Update n
+
+🔹 Java Code (BEST ANSWER)
+
+import java.util.HashSet;
+
+class Solution {
+    public boolean isHappy(int n) {
+        HashSet<Integer> set = new HashSet<>();
+        while (n != 1) {
+            if (set.contains(n)) return false;
+            set.add(n);
+            int sum = 0;
+            while (n > 0) {
+                int d = n % 10;
+                sum += d * d;
+                n /= 10;
+            }
+            n = sum;
+        }
+        return true;
+    }
+}
+
+
+🔹 Time & Space Complexity
+
+Time: Not fixed, but small iterations in practice → efficient
+Space: O(k) for cycle set (k = unique states, very small)
+
+🔥 Interview Tip
+If asked:
+Why use HashSet?
+Answer:
+
+To detect cycles and avoid infinite loops efficiently.
+
+📌 Quick Revision Table
+Approach	Time	Space
+Without cycle check	❌ Infinite loop risk	O(1)
+Optimized (HashSet)	Efficient (few iterations)	Small O(k)
