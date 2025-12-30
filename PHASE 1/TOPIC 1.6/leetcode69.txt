@@ -1,0 +1,61 @@
+✅ LeetCode — Sqrt(x) (LC 69)
+
+🔹 Problem Statement (Simplified)
+Given a non-negative integer x, return the square root of x rounded down (integer part only).
+Don’t use built-in power functions.
+
+🔹 Example
+
+Input: 8
+Output: 2
+
+Input: 4
+Output: 2
+
+
+🔹 Interview-Preferred Approach: Binary Search
+Why Binary Search?
+Runs in O(log x)
+No extra space
+Standard optimized method
+
+🔹 Algorithm
+1. Set left = 0, right = x
+2. While left ≤ right:
+     -mid = left + (right - left)/2
+     -If mid * mid == x → return mid
+     -If mid * mid < x → store answer & move left = mid + 1
+     -Else move right = mid - 1
+3.Return stored answer
+
+class Solution {
+    public int mySqrt(int x) {
+        int l = 0, r = x, ans = 0;
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if ((long) mid * mid <= x) {
+                ans = mid;
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return ans;
+    }
+}
+
+🔹 Time & Space Complexity
+Time: O(log x)
+Space: O(1)
+
+🔥 Interview Tip
+If asked:
+Why cast to long?
+Answer:
+To prevent overflow when squaring mid.
+
+📌 Quick Revision Table
+Approach	Time	Space
+Linear check 0→x	O(x) ❌ slow	O(1)
+Optimized (Binary Search)	O(log x)	O(1)
+
