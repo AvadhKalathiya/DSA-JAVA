@@ -1,0 +1,61 @@
+✅ LeetCode — Rotate Array (LC 189)
+
+🔹 Problem Statement (Simplified)
+Rotate array nums to the right by k steps (in-place).
+
+🔹 Example
+
+Input:  nums = [1,2,3,4,5,6,7], k = 3
+Output: [5,6,7,1,2,3,4]
+
+Input:  nums = [-1,-100,3,99], k = 2
+Output: [3,99,-1,-100]
+
+
+🔹 Interview-Preferred Approach: Reverse 3-Step
+Why this?
+In-place (no extra array)
+O(n) time
+Clean logic
+
+🔹 Algorithm
+k = k % n
+Reverse full array
+Reverse first k elements
+Reverse remaining n-k elements
+
+🔹 Java Code (BEST ANSWER)
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k %= n;
+        reverse(nums, 0, n - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, n - 1);
+    }
+
+    private void reverse(int[] arr, int l, int r) {
+        while (l < r) {
+            int t = arr[l];
+            arr[l++] = arr[r];
+            arr[r--] = t;
+        }
+    }
+}
+
+
+⏱ Time & Space Complexity
+Time: O(n)
+Space: O(1) auxiliary
+
+🔥 Interview Tip
+If asked:
+Why not use extra array?
+Answer:
+Extra array takes O(n) space, reverse method rotates in O(1) auxiliary memory.
+
+📌 Quick Revision Table
+Approach	Time	Space	In-place
+Extra array	O(n)	O(n)	❌
+Reverse method	O(n)	O(1)	✅
