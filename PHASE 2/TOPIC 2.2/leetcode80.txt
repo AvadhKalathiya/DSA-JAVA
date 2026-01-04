@@ -1,0 +1,59 @@
+✅ LeetCode 80 — Remove Duplicates from Sorted Array II
+
+🔹 Problem Statement (Simplified)
+Given a sorted array nums, remove duplicates in-place such that each element appears at most twice.
+Return the new valid length.
+
+🔹 Example
+Input:  [1,1,1,2,2,3]
+Output: 5 → [1,1,2,2,3,_]
+
+Input:  [0,0,1,1,1,1,2,3,3]
+Output: 7 → [0,0,1,1,2,3,3,_,_]
+
+
+🔹 Interview-Preferred Approach: Two Pointer (Overwrite valid elements)
+Why this?
+One pass O(n)
+No extra storage
+Uses O(1) auxiliary space
+Standard placement solution
+
+🔹 Algorithm
+Keep pointer k = 0 (write index)
+Loop i = 0 → n-1
+If k < 2 → always write first two
+Else check nums[i] != nums[k-2] → write allowed
+Do nums[k++] = nums[i]
+Continue loop
+Return k
+
+🔹 Java Code (BEST ANSWER)
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int k = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (k < 2 || nums[i] != nums[k - 2]) {
+                nums[k++] = nums[i];
+            }
+        }
+        return k;
+    }
+}
+
+
+⏱ Time & Space Complexity
+Time: O(n)
+Space: O(1) auxiliary
+
+🔥 Interview Tip
+If asked:
+Why compare with k-2 index?
+Answer:
+Because we allow max 2 occurrences, so we check the element before the last 2 placed.
+
+📌 Quick Revision Table
+Approach	Time	Space	In-place
+Extra array	O(n)	O(n)	❌
+Optimized (2 pointer)	O(n)	O(1)	✅

@@ -1,0 +1,57 @@
+✅ LeetCode 26 — Remove Duplicates from Sorted Array
+
+🔹 Problem Statement (Simplified)
+Given a sorted array nums, remove duplicates in-place so each element appears only once.
+Return the new length of the unique array.
+
+🔹 Example
+Input:  [1,1,2]
+Output: 2 → [1,2,_]
+Input:  [0,0,1,1,1,2,2,3,3,4]
+Output: 5 → [0,1,2,3,4,_,_,_,_,_]
+
+
+🔹 Interview-Preferred Approach: Two Pointer (Read & Write)
+Why this?
+In-place overwrite
+1-pass optimized
+O(1) extra space
+
+🔹 Algorithm
+Use pointer k = 1 (write index for unique values)
+Loop i = 1 → n-1
+If nums[i] != nums[i-1] → write nums[k++] = nums[i]
+Continue loop
+Return k
+
+🔹 Java Code (BEST ANSWER)
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0;
+        int k = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[i - 1]) {
+                nums[k++] = nums[i];
+            }
+        }
+        return k;
+    }
+}
+
+
+⏱ Time & Space Complexity
+Time: O(n)
+Space: O(1) auxiliary
+
+🔥 Interview Tip
+If asked:
+Why start writing from index 1?
+Answer:
+Because the first element is always unique in a sorted array.
+
+📌 Quick Revision Table
+
+Approach	Time	Space	Optimal
+Use extra set/array	O(n)	O(n)	❌ Not needed
+Optimized (2 pointer)	O(n)	O(1)	✅ Best
