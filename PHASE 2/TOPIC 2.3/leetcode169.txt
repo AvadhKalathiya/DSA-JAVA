@@ -1,0 +1,78 @@
+✅ leetcode — majority element (lc 169)
+
+🔹 problem statement (simplified)
+given an array nums, return the element that appears more than n/2 times.
+(it is guaranteed that such element always exists.)
+
+🔹 example
+
+input:  [3,2,3]
+output: 3
+
+input:  [2,2,1,1,1,2,2]
+output: 2
+
+
+🔹 interview-preferred approach: moore’s voting algorithm
+why this?
+
+one pass o(n)
+
+o(1) auxiliary space
+
+no extra hashmap required
+
+most optimized for placement
+
+🔹 algorithm
+
+keep candidate and count = 0
+
+traverse array:
+
+if count == 0 → set candidate = nums[i]
+
+if nums[i] == candidate → count++
+
+else → count--
+
+return candidate
+
+🔹 java code (best answer)
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        int candidate = 0, count = 0;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
+    }
+}
+
+
+⏱ time & space complexity
+
+time: o(n)
+
+space: o(1)
+
+🔥 interview tip
+if asked:
+
+why not use hashmap for frequency?
+
+answer:
+
+hashmap works but uses o(n) space. moore’s voting finds answer in o(1) space, so it's more optimized.
+
+📌 quick revision table
+
+approach	time	space
+brute force freq (hashmap)	o(n)	o(n) ❌
+optimized (moore voting)	o(n)	o(1) ✅
